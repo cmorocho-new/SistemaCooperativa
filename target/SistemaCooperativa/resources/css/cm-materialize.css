@@ -1,0 +1,261 @@
+/* fallback */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url("#{resource['css/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2']}") format('woff2');
+}
+
+nav .brand-logo {
+    font-size: 24px;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+@media only screen and (min-width: 601px) {
+     nav.nav-extended .nav-wrapper {
+      min-height:50px
+     }
+     nav,
+     nav .nav-wrapper i,
+     nav a.sidenav-trigger,
+     nav a.sidenav-trigger i {
+      height:50px;
+      line-height:50px;
+     }
+     .navbar-fixed {
+      height:50px
+     }
+}
+
+.input-field .helper-text {
+    color: red;
+    margin: 0;
+}
+
+nav {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+}
+
+@media only screen and (max-width: 992px) {
+ nav .brand-logo {
+  left:0;
+  -webkit-transform:translateX(0);
+  transform:translateX(0);
+ }
+}
+
+nav .brand-logo i, nav .brand-logo i.material-icons {
+    margin-left: 10px;
+    margin-rigth: 10px;
+    font-size: 26px;
+    height: 50px;
+    line-height: 50px;
+}
+
+tbody > tr > td {
+    padding: 0 4px;
+    font-size: 12px;
+    cursor: pointer;
+    border-right: 2px solid rgba(0,0,0,0.12);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+tbody > tr > td input{
+    margin: 0 !important;
+    font-size: 12px !important;
+}
+
+tbody > tr > td:last-child {
+    border-right: none;
+}
+
+thead > tr > th {
+    padding: 4px 5px;
+    font-size: 12px;
+    font-weight: bold;
+    /* text-transform: uppercase;*/
+}
+
+.pagination{
+    margin: 4px;
+}
+
+.input-field .prefix {
+    width: 30px;
+    font-size: 28px;
+    line-height: 1.4;
+    top: 0;
+    margin-left: 4px;
+    height: 30px;
+}
+
+.input-field input[type=text].valid {
+     border-bottom: 1px solid #000;
+     box-shadow: 0 1px 0 0 #000;
+}
+
+input:not([type]),
+input[type="text"]:not(.browser-default),
+input[type="password"]:not(.browser-default),
+input[type="email"]:not(.browser-default),
+input[type="url"]:not(.browser-default),
+input[type="time"]:not(.browser-default),
+input[type="date"]:not(.browser-default),
+input[type="datetime"]:not(.browser-default),
+input[type="datetime-local"]:not(.browser-default),
+input[type="tel"]:not(.browser-default),
+input[type="number"]:not(.browser-default),
+input[type="search"]:not(.browser-default),
+textarea.materialize-textarea {
+    height: 24px;
+    font-size: 14px;
+}
+
+.input-field > label {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    font-size: 14px;
+}
+
+.input-field {
+    position: relative;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+[type="checkbox"] + span:not(.lever) {
+    padding-left: 26px;
+    line-height: 18px;
+    font-size: 1rem;
+}
+
+.colum-accion i {
+    vertical-align: bottom;
+    font-size: 24px;
+}
+
+.modal .modal-footer .btn, .modal .modal-footer .btn-large, .modal .modal-footer .btn-small, .modal .modal-footer .btn-flat {
+    margin: 4px 2px;
+}
+
+.preloader-wrapper.small {
+    width: 28px;
+    height: 28px;
+}
+
+.refresh-option{
+    cursor: pointer;
+}
+
+.refresh-option i{
+    font-size: 22px !important;
+}
+
+.toast {
+    padding: 0;
+    cursor: pointer;
+    font-size: 14px;
+    color: #424242;
+    font-weight: 520;
+}
+
+.toast .done-msg{
+    padding: 5px 20px;
+    background: #66bb6a;
+    width: 100%;
+}
+
+.toast .error-msg{
+    padding: 5px 20px;
+    background: #e57373;
+    width: 100%;
+}
+
+.toast .info-msg{
+    padding: 5px 20px;
+    background: #b3e5fc;
+    width: 100%;
+}
+
+.progress {
+    margin: 0;
+}
+
+.dropdown-content li {
+    min-height: 24px;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+    padding: 2px 16px;
+    font-weight: 500;
+    font-size: 14px;
+    color: black;
+}
+.select-wrapper input.select-dropdown {
+    height: 24px;
+    font-size: 14px;
+    color: black;
+}
+
+.sidenav li > a {
+    font-size: 12px;
+    font-weight: 501;
+    height: 40px;
+    line-height: 40px;
+}
+.sidenav li > a > i, .sidenav li > a > [class^="mdi-"], .sidenav li > a li > a > [class*="mdi-"], .sidenav li > a > i.material-icons {
+    line-height: 44px;
+    margin: 0 12px 0 0;
+}
+
+.sidenav .collapsible-body li a, .sidenav.fixed .collapsible-body li a {
+    padding: 0 0 0 22px;
+}
+
+.modal {
+    border-radius: 6px;
+}
+
+.sidenav .user-view {
+    padding: 0 32px 0;
+}
+
+.select-wrapper + label {
+    top: -16px;
+    font-size: 12px;
+}
+
+.panel-mensaje {
+    padding: 8px 10px;
+    margin: 6px 0;
+}
+
+h6.sub-titulo {
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.panel-butons {
+    border-top: 1px solid #c6c3c3;
+    padding: 10px 0;
+    border-bottom: 1px solid #c6c3c3;
+}

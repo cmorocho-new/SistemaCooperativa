@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pretty-config xmlns="http://ocpsoft.org/prettyfaces/3.3.3" 
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+               xsi:schemaLocation="http://ocpsoft.org/prettyfaces/3.3.3               
+      http://ocpsoft.org/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.3.xsd">
+
+    <url-mapping id="index">
+        <pattern value="/" />
+        <view-id value="/index.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="inicio-banca-virtual">
+        <pattern value="/virtual/" />
+        <view-id value="/templates/banca-virtual/index.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="LoginBancaVirtual">
+        <pattern value="/virtual/login/" />
+        <view-id value="/templates/banca-virtual/login.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="AccesosBancaVirtual">
+        <pattern value="/virtual/accesos/" />
+        <view-id value="/templates/banca-virtual/usuario-acceso.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="EstadoCuentaBancaVirtual">
+        <pattern value="/virtual/estado/" />
+        <view-id value="/templates/banca-virtual/estado-cuenta.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="inicio-administrativo">
+        <pattern value="/administrativo/" />
+        <view-id value="/templates/index.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="LoginAdministrativo">
+        <pattern value="/administrativo/login/" />
+        <view-id value="/templates/login.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="CRUDUsuario">
+        <pattern value="/administrativo/usuarios/" />
+        <view-id value="/templates/administracion/usuarios/crear-usuario.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="CRUDCliente">
+        <pattern value="/administrativo/clientes/" />
+        <view-id value="/templates/general/clientes/crear-cliente.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="TransRetiro">
+        <pattern value="/administrativo/transacciones/retiro/" />
+        <view-id value="/templates/transaccion/retiros/index_retiro.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="TransDepsoito">
+        <pattern value="/administrativo/transacciones/deposito/" />
+        <view-id value="/templates/transaccion/depositos/index_deposito.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="SolisitudCreditosCliente">
+        <pattern value="/virtual/creditos/solicitud/" />
+        <view-id value="/templates/banca-virtual/solicitud-credito.xhtml" />
+    </url-mapping>
+
+</pretty-config>

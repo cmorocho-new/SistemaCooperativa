@@ -1,0 +1,38 @@
+<ui:composition template="/templates/base-site.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:define name="titulo">  SC | Transaccion Deposotio </ui:define>
+    <ui:define name="titulo_contenido">TRANSACCION DEPOSITO </ui:define>
+
+    <ui:define name="sub_css">
+        <h:outputStylesheet type="text/css" name="/css/transaccion/transaccion.css"/>
+        <h:outputStylesheet type="text/css" name="/css/transaccion/transaccion-retiro.css"/>
+    </ui:define>
+
+    <ui:define name="contenido">
+        <div id="cnt-transaccion" class="row">
+            <h:form  id="cnt-panel-mensajes">
+                <h:inputHidden id="errors-mensaje" value="#{transDepositoBean.mensajeError}" />
+                <h:inputHidden id="susses-mensaje" value="#{transDepositoBean.mensajeSusses}" />
+            </h:form>
+            <h:form  id="cnt-panel-opciones" class="card col s12">
+                <div id="cnt-panel-cuenta" class="col s12 m6">
+                    <ui:include src="panel_cuenta.xhtml"/>
+                </div>
+                <div id="cnt-panel-transaccion" class="col s12 m6">
+                    <ui:include src="panel_transaccion.xhtml"/>
+                </div>
+            </h:form >
+            <h:form id="tbl-lista-detalle" class="card col s12">
+                <ui:include src="lista_detalle_deposito.xhtml"/>
+            </h:form >
+        </div>
+    </ui:define>
+
+    <ui:define name="sub_js">
+        <h:outputScript  type="text/javascript" name="/js/transaccion/main_transaccion_retiro.js" />
+    </ui:define>
+
+</ui:composition>

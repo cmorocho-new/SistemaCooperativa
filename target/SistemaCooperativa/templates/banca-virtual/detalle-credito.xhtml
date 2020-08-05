@@ -1,0 +1,80 @@
+<ui:composition template="base-virtual.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:define name="titulo">SC | Detalle Credito</ui:define>
+
+	<ui:define name="contenido">
+		<nav class="sub-nav grey darken-3">
+			<div class="nav-wrapper">
+				<div class="col s12">
+					<h:outputLink  value ="/SistemaCooperativa/virtual/creditos/" class="breadcrumb">CREDITOS</h:outputLink>
+					<h:outputLink  value ="" class="breadcrumb">DETALLE</h:outputLink>
+				</div>
+			</div>
+		</nav>
+		<h4 align="center">Detalle del Credito</h4>
+		<h:form id="cnt-detalle">
+			<div id="tbl-amortizaciones">
+				<div class="table-header">
+					<div class="table-header-dinamic">
+						<table>
+							<thead>
+								<tr>
+									<th class="colum-index center-align">N° CUOTA</th>
+									<th width="150px" class="center-align">FECHA PLAZO</th>
+									<th width="100px" class="center-align">VALOR</th>
+									<th width="100px" class="center-align">SALDO</th>
+									<th width="150px" class="center-align">ESTADO</th>
+									<th width="100px" class="center-align">PAGO</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div class="table-body">
+				<h:dataTable id="lista-transaaciones" value="#{detalleCredito.listaCuotas}" var="cuota"
+							 class="striped" >
+					<h:column class="colum-index center-align">
+						<h:outputText value="#{rowCounter.row}" />
+					</h:column>
+					<h:column class="center-align">
+						<h:outputText value="#{cuota.fechaPlazo}" >
+							<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+						</h:outputText>
+						<f:passThroughAttribute name="width" value="150px"/>
+					</h:column>
+					<h:column class="center-align">
+						<h:outputText value="#{cuota.valor}">
+							<f:convertNumber type="currency" />
+						</h:outputText>
+						<f:passThroughAttribute name="width" value="100px"/>
+					</h:column>
+					<h:column class="center-align">
+						<h:outputText value="#{cuota.saldo}">
+							<f:convertNumber type="currency" />
+						</h:outputText>
+						<f:passThroughAttribute name="width" value="100px"/>
+					</h:column>
+					<h:column class="center-align">
+						<h:outputText value="#{cuota.estadoCredito.nombre}" />
+						<f:passThroughAttribute name="width" value="150px"/>
+					</h:column>
+					<h:column class="center-align">
+						<h:outputLink value ="/SistemaCooperativa/virtual/creditos/#{detalleCredito.idCredito}/detalle/#{cuota.id}/pago/"
+									  styleClass="black-text">
+							<i class="material-icons">payment</i>
+						</h:outputLink>
+						<f:passThroughAttribute name="width" value="100px"/>
+					</h:column>
+				</h:dataTable>
+			</div>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

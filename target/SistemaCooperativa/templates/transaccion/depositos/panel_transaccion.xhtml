@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <div class="row">
+        <div class="col s12 green lighten-4" style="padding-top: 16px">
+            <div class="input-field col s4">
+                <h:inputText id="fecha_emision" class="valid" value="#{transDepositoBean.infoTransaccion.fechaTransacion}" disabled="true">
+                    <f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+                </h:inputText>
+                <h:outputLabel for="fecha_emision">Fecha Emision:</h:outputLabel>
+            </div>
+            <div class="input-field col s2">
+                <h:inputText id="hora" disabled="true" class="valid" value="#{transDepositoBean.infoTransaccion.fechaTransacion}">
+                    <f:convertDateTime pattern="HH:mm:ss" type="time" />
+                </h:inputText>
+                <h:outputLabel for="hora">Hora: </h:outputLabel>
+            </div>
+            <div class="input-field col s2">
+                <h:inputText id="codigo" disabled="true" class="valid" value="#{transDepositoBean.infoTransaccion.codigoTransacion}"/>
+                <h:outputLabel for="codigo">Trans: </h:outputLabel>
+            </div>
+            <div class="input-field col s2">
+                <h:inputText id="numero" disabled="true" class="valid" value="#{transDepositoBean.infoTransaccion.numeroTransacion}"/>
+                <h:outputLabel for="numero">Numero: </h:outputLabel>
+            </div>
+        </div>
+        <div class="input-field col s8">
+            <div class="chip teal ">
+                CAJERO
+            </div>
+            <div class="chip">
+                Carlos Morocho
+            </div>
+        </div>
+        <div class="input-field col s8">
+            <h:inputTextarea id="textarea2" class="materialize-textarea" data-length="120" value="#{transDepositoBean.comprobante.observacion}"/>
+            <h:outputLabel for="textarea2">Observacion</h:outputLabel>
+        </div>
+    </div>
+</ui:composition>

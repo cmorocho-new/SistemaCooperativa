@@ -1,0 +1,68 @@
+<ui:composition template="/templates/base-site.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui">
+
+	<ui:define name="titulo"> SC | Ingreso Usuarios </ui:define>
+	<ui:define name="titulo_contenido">	INGRESO USUARIOS </ui:define>
+
+	<ui:define name="contenido">
+		<div class="container">
+			<h:form  id="cnt-from-usuario" onsubmit="return validacionInputs.validarVacios('USR')">
+				<div class="row" style="margin-bottom: 0">
+					<ui:include src="/templates/mensajes.xhtml" />
+				</div>
+				<div class="row">
+					<div class="divider" style="margin-top: 10px;"></div>
+					<h6 class="sub-titulo">DATOS DE USUARIO</h6>
+					<div class="input-field col s5">
+						<h:inputText id="nombres" type="text" class="requerido-USR" maxlength="200"
+									 value="#{usuarioBean.usuarioDTO.nombre}" />
+						<h:outputLabel for="nombres">Nombre y Apellido</h:outputLabel>
+					</div>
+
+					<div class="input-field col s3">
+						<h:selectOneMenu id="rol" styleClass="requerido-USR" value="#{usuarioBean.usuarioDTO.rol}"
+										 converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="---------" itemValue="#{null}" itemDisabled="true" noSelectionOption="true"/>
+							<f:selectItems value="#{usuarioBean.listaRoles}" var="rol"
+										   itemLabel="#{rol.nombre}" itemValue="#{rol}" />
+						</h:selectOneMenu>
+						<h:outputLabel for="rol">Rol Usuario</h:outputLabel>
+					</div>
+				</div>
+
+				<div class="row">
+					<h6 class="sub-titulo">DATOS DE AUTENTICACION</h6>
+					<div class="input-field col s5">
+						<h:inputText id="correo" type="text" class="requerido-USR" maxlength="100"
+									 value="#{usuarioBean.usuarioDTO.correo}" />
+						<h:outputLabel for="correo">E-mail</h:outputLabel>
+					</div>
+					<div class="input-field col s3">
+						<h:inputSecret id="password" class="requerido-USR" maxlength="100"
+									   value="#{usuarioBean.usuarioDTO.contresena}" />
+						<h:outputLabel for="password">Contraseña</h:outputLabel>
+					</div>
+					<div class="input-field col s3">
+						<h:inputSecret id="password2" class="requerido-USR" maxlength="100"/>
+						<h:messages for="password2" style="color:red" class="helper-text" />
+						<h:outputLabel for="password2">Repetir Contraseña</h:outputLabel>
+						<o:validateEqual components="password password2" message="contraseñas no coinciden"
+										 showMessageFor="password2" />
+					</div>
+				</div>
+				<div class="row center-align panel-butons">
+					<h:commandButton class="btn waves-effect waves-light" style="width: 200px"
+									 action="#{usuarioBean.guardarUsuariosDto()}" value="GUARDAR">
+					</h:commandButton>
+				</div>
+
+			</h:form>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

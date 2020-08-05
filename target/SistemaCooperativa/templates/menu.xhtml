@@ -1,0 +1,123 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <aside id="slide-out" class="sidenav sidenav-fixed grey lighten-3">
+          <div class="card teal" style="margin: 0;">
+             <div class="user-view">
+                  <a href="#user"><h:graphicImage class="circle"  value="#{resource['img/user.jpg']}"/></a>
+                  <a href="#nombre"><span class="white-text name">#{principalBean.usuarioLogeado.nombre}</span></a>
+                  <a href="#rol"><span class="white-text email">#{principalBean.usuarioLogeado.rolNombre}</span></a>
+             </div>
+          </div>
+        <h:panelGroup rendered="#{principalBean.usuarioLogeado.rolId == 'ADM'}">
+            <ul class="collapsible">
+                <li class="bold">
+                    <a class="collapsible-header waves-effect">
+                        <i class="material-icons">group</i>
+                        <span class="nav-text">ADMINISTRACION</span>
+                    </a>
+                    <div class="collapsible-body">
+                        <ul class="collapsible">
+                            <li>
+                                <h:outputLink  value ="/SistemaCooperativa/administrativo/usuarios/" class="waves-effect">
+                                    <i class="material-icons">keyboard_arrow_right</i>
+                                    <span>USUARIOS</span>
+                                </h:outputLink>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="bold">
+                    <a class="collapsible-header waves-effect">
+                        <i class="material-icons">group</i>
+                        <span class="nav-text">GENERAL</span>
+                    </a>
+                    <div class="collapsible-body">
+                        <ul class="collapsible">
+                            <li>
+                                <h:outputLink  value ="/SistemaCooperativa/administrativo/clientes/" class="waves-effect">
+                                    <i class="material-icons">keyboard_arrow_right</i>
+                                    <span>CLIENTES</span>
+                                </h:outputLink>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="bold">
+                    <a class="collapsible-header waves-effect">
+                        <i class="material-icons">group</i>
+                        <span class="nav-text">TRANSACCION</span>
+                    </a>
+                    <div class="collapsible-body">
+                        <ul class="collapsible">
+                            <li>
+                                <h:outputLink  value ="/SistemaCooperativa/administrativo/transacciones/retiro/" class="waves-effect">
+                                    <i class="material-icons">keyboard_arrow_right</i>
+                                    <span>RETIROS</span>
+                                </h:outputLink>
+                            </li>
+                            <li>
+                                <h:outputLink  value ="/SistemaCooperativa/administrativo/transacciones/deposito/" class="waves-effect">
+                                    <i class="material-icons">keyboard_arrow_right</i>
+                                    <span>DEPOSITOS</span>
+                                </h:outputLink>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{principalBean.usuarioLogeado.rolId == 'CJR'}">
+            <ul class="collapsible">
+                <li class="bold">
+                    <a class="collapsible-header waves-effect">
+                        <i class="material-icons">group</i>
+                        <span class="nav-text">TRANSACCION</span>
+                    </a>
+                    <div class="collapsible-body">
+                        <ul class="collapsible">
+                            <li>
+                                <h:outputLink  value ="/SistemaCooperativa/administrativo/transacciones/retiro/" class="waves-effect">
+                                    <i class="material-icons">keyboard_arrow_right</i>
+                                    <span>RETIROS</span>
+                                </h:outputLink>
+                            </li>
+                            <li>
+                                <h:outputLink  value ="/SistemaCooperativa/administrativo/transacciones/deposito/" class="waves-effect">
+                                    <i class="material-icons">keyboard_arrow_right</i>
+                                    <span>DEPOSITOS</span>
+                                </h:outputLink>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{principalBean.usuarioLogeado.rolId == 'JDC'}">
+            <ul class="collapsible">
+                <li class="bold">
+                    <a class="collapsible-header waves-effect">
+                        <i class="material-icons">group</i>
+                        <span class="nav-text">GENERAL</span>
+                    </a>
+                    <div class="collapsible-body">
+                        <ul class="collapsible">
+                            <li>
+                                <h:outputLink  value ="/SistemaCooperativa/administrativo/clientes/" class="waves-effect">
+                                    <i class="material-icons">keyboard_arrow_right</i>
+                                    <span>CLIENTES</span>
+                                </h:outputLink>
+                            </li>
+                            <li>
+                                <h:outputLink  value ="/SistemaCooperativa/administrativo/creditos/" class="waves-effect">
+                                    <i class="material-icons">keyboard_arrow_right</i>
+                                    <span>CREDITOS</span>
+                                </h:outputLink>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </h:panelGroup>
+    </aside>
+</ui:composition>

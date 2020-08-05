@@ -1,0 +1,200 @@
+<ui:composition template="/templates/banca-virtual/base-virtual.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:define name="titulo"> SC | Solicitud Creditos </ui:define>
+	<ui:define name="titulo_contenido">	Solicitud Creditos </ui:define>
+
+	<ui:define name="contenido">
+		<nav class="sub-nav grey darken-3">
+			<div class="nav-wrapper">
+				<div class="col s12">
+					<h:outputLink  value ="/SistemaCooperativa/virtual/creditos/" class="breadcrumb">CREDITOS</h:outputLink>
+					<h:outputLink  value ="" class="breadcrumb">SOLICITUD</h:outputLink>
+				</div>
+			</div>
+		</nav>
+		<div class="container">
+			<h:form enctype="multipart/form-data" id="cnt-from-solicitud"
+				onsubmit="return validacionInputs.validarVacios('SOL')">
+				<div class="row" style="margin-bottom: 0">
+					<ui:include src="/templates/mensajes.xhtml" />
+				</div>
+				<div class="row" style="margin: 0">
+					<div class="progress">
+						<div id="progress-cuenta"></div>
+					</div>
+					<h6 class="sub-titulo">DATOS DEL CREDITO</h6>
+					<div class="input-field col s6">
+						<h:selectOneMenu id="prop-credito" styleClass="requerido-SOL"
+							value="#{solicitudCreditoBean.creditoDTO.propositoCredito}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="---------" itemValue="#{null}"
+								itemDisabled="true" noSelectionOption="true" />
+							<f:selectItems
+								value="#{solicitudCreditoBean.listaPropositoCredito}"
+								var="credito" itemLabel="#{credito.nombre}"
+								itemValue="#{credito}" />
+						</h:selectOneMenu>
+						<h:outputLabel for="prop-credito">Proposito Credito (*)</h:outputLabel>
+					</div>
+					<div class="input-field col s3">
+						<h:inputText id="monto-credito" type="text"
+							class="dec requerido-SOL" maxlength="20"
+							value="#{solicitudCreditoBean.creditoDTO.montoCredito}" />
+						<h:outputLabel for="monto-credito">Monto (Miles*)</h:outputLabel>
+					</div>
+					<div class="input-field col s2">
+						<h:inputText id="plazo-credito" type="text"
+							class="num requerido-SOL" maxlength="4"
+							value="#{solicitudCreditoBean.creditoDTO.plazoMeses}" />
+						<h:outputLabel for="plazo-credito">Plazo (Meses*)</h:outputLabel>
+					</div>
+					<div class="col s1">
+						<i class="material-icons medium green-text">credit_card</i>
+					</div>
+					<div id="panel-text-otros" class="input-field col s12">
+						<h:inputText id="descripcion-motivo" type="text" maxlength="400"
+							value="#{solicitudCreditoBean.creditoDTO.descripcionMotivo}" />
+						<h:outputLabel for="descripcion-motivo">Descripcion del proposito (Otros*)</h:outputLabel>
+					</div>
+				</div>
+				<div class="divider" style="margin-top: 10px;"></div>
+				<div class="row">
+					<div class="col s6 divider-vertical" style="margin: 0;">
+						<h6 class="sub-titulo">EMPLEO</h6>
+						<div class="input-field col s12">
+							<h:selectOneMenu id="tipo-empleo" styleClass="requerido-SOL"
+								value="#{solicitudCreditoBean.creditoDTO.tipoEmpleo}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="---------" itemValue="#{null}"
+									itemDisabled="true" noSelectionOption="true" />
+								<f:selectItems value="#{solicitudCreditoBean.listaTipoEmpleo}"
+									var="tipoEmp" itemLabel="#{tipoEmp.nombre}"
+									itemValue="#{tipoEmp}" />
+							</h:selectOneMenu>
+							<h:outputLabel for="tipo-empleo">Tipo Empleo (*)</h:outputLabel>
+						</div>
+						<div class="input-field col s7">
+							<h:inputText id="tiempo-empleo" type="text"
+								class="dec requerido-SOL" maxlength="20"
+								value="#{solicitudCreditoBean.creditoDTO.tiempoEmpleo}" />
+							<h:outputLabel for="tiempo-empleo">Tiempo Empleo (años)</h:outputLabel>
+						</div>
+						<div class="input-check col s5">
+							<label class="right"> <h:selectBooleanCheckbox
+									id="trabajodor-ext" class="filled-in" checked="checked"
+									value="#{solicitudCreditoBean.creditoDTO.trabajadorExtrangero}" />
+								<span>Trabajador Extranjero</span>
+							</label>
+						</div>
+						<h6 class="sub-titulo">VIVIENDA</h6>
+						<div class="input-field col s12">
+							<h:selectOneMenu id="tipoVivienda" styleClass="requerido-SOL"
+								value="#{solicitudCreditoBean.creditoDTO.tipoVienda}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="---------" itemValue="#{null}"
+									itemDisabled="true" noSelectionOption="true" />
+								<f:selectItems value="#{solicitudCreditoBean.listaTipoVivienda}"
+									var="vivienda" itemLabel="#{vivienda.nombre}"
+									itemValue="#{vivienda}" />
+							</h:selectOneMenu>
+							<h:outputLabel for="tipoVivienda">Tipo de Vivienda (*)</h:outputLabel>
+						</div>
+						<div class="input-field col s7">
+							<h:inputText id="avaluo-vivienda" type="text"
+								class="dec requerido-SOL" maxlength="20"
+								value="#{solicitudCreditoBean.creditoDTO.avaluoVivienda}" />
+							<h:outputLabel for="avaluo-vivienda">Avaluo de Vivienda</h:outputLabel>
+						</div>
+						<h6 class="sub-titulo col s12">INGRESOS - EGRESOS</h6>
+						<div class="input-field col s6">
+							<h:inputText id="total-ingresos" type="text"
+								class="dec requerido-SOL" maxlength="10"
+								value="#{solicitudCreditoBean.creditoDTO.totalIngresos}">
+							</h:inputText>
+							<h:outputLabel for="total-ingresos">Ingresos (*)</h:outputLabel>
+						</div>
+						<div class="input-field col s6">
+							<h:inputText id="total-gstos" type="text"
+								class="dec requerido-SOL" maxlength="10"
+								value="#{solicitudCreditoBean.creditoDTO.totalEgresos}">
+							</h:inputText>
+							<h:outputLabel for="total-gstos">Egresos (*)</h:outputLabel>
+						</div>
+					</div>
+					<div class="col s6" style="margin: 0;">
+						<h6 class="sub-titulo">GARANTES</h6>
+						<div class="input-field col s12">
+							<i class="material-icons prefix">person</i>
+							<h:inputText id="cedula-garante-p" type="text"
+								class="num requerido-SOL" maxlength="10"
+								value="#{solicitudCreditoBean.extraInfo.numeroCedulaGP}">
+							</h:inputText>
+							<h:outputLabel for="cedula-garante-p">Cedula del Garante (Principal*)</h:outputLabel>
+						</div>
+						<div class="input-field col s12">
+							<i class="material-icons prefix">person</i>
+							<h:inputText id="cedula-garante-s" type="text" class="num"
+								maxlength="10"
+								value="#{solicitudCreditoBean.extraInfo.numeroCedulaGS}">
+							</h:inputText>
+							<h:outputLabel for="cedula-garante-s">Cedula del Garante (Secundario)</h:outputLabel>
+						</div>
+						<h6 class="sub-titulo">ACTIVOS</h6>
+						<div class="input-check col s12">
+							<label> <h:selectBooleanCheckbox id="activo-auto"
+									class="filled-in" checked="checked"
+									value="#{solicitudCreditoBean.extraInfo.activos[0]}" /> <span>Autos
+									u otros automotores</span>
+							</label> <label> <h:selectBooleanCheckbox id="activo-casa"
+									class="filled-in" checked="checked"
+									value="#{solicitudCreditoBean.extraInfo.activos[1]}" /> <span>Bienes
+									inmuebles (Casa, terrenos, etc) </span>
+							</label> <label> <h:selectBooleanCheckbox id="activo-seguro"
+									class="filled-in" checked="checked"
+									value="#{solicitudCreditoBean.extraInfo.activos[2]}" /> <span>Seguro
+									de vida y/o Plan contruccion</span>
+							</label>
+						</div>
+						<div class="input-field col s12">
+							<h:inputText id="descripcion-activos" type="text" maxlength="400"
+								value="#{solicitudCreditoBean.creditoDTO.descripcionActivo}" />
+							<h:outputLabel for="descripcion-activos">Descripcion del activo (Otros*)</h:outputLabel>
+						</div>
+						<h6 class="sub-titulo">ADJUNTOS</h6>
+						<div class="input-check col s12">
+							<p:fileUpload id="fu1" value="#{solicitudCreditoBean.file1}"
+								mode="simple" skinSimple="true" label="Cedula"  maxlength="10"/>
+						</div>
+
+						<div class="input-check col s12">
+							<p:fileUpload id="fu2" value="#{solicitudCreditoBean.file2}"
+								mode="simple" skinSimple="true" label="Rol"  maxlength="10"/>
+						</div>
+						<div class="input-check col s12">
+							<p:fileUpload id="fu3" value="#{solicitudCreditoBean.file3}"
+								mode="simple" skinSimple="true" label="Planilla" maxlength="10"/>
+						</div>
+
+					</div>
+				</div>
+				<div class="row center-align panel-butons">
+					<h:outputLink value="/SistemaCooperativa/virtual/creditos/"
+						styleClass="btn waves-effect waves-light red"
+						style="width: 200px; margin-right: 20px;"> CANCELAR
+					</h:outputLink>
+					<h:commandButton class="btn waves-effect waves-light"
+						style="width: 200px" process="@this"
+						action="#{solicitudCreditoBean.guardarSolicitud()}"
+						value="GUARDAR">
+					</h:commandButton>
+				</div>
+
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

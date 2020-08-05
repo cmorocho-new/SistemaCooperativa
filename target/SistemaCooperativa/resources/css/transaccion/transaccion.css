@@ -1,0 +1,38 @@
+#cnt-transaccion {
+    margin: 0;
+    padding-left: 14px;
+}
+
+#cnt-panel-cuenta.col, #cnt-panel-transaccion.col {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+#cnt-panel-cuenta .card {
+    margin: 0;
+}
+
+#tbl-lista-detalle.card {
+    padding: 0;
+    margin: 8px 0;
+}
+
+#cnt-panel-opciones {
+    padding: 0;
+    margin-bottom: 4px;
+}
+
+#cnt-panel-transaccion .row, .table-footer-static.row {
+    margin: 0
+}
+#cnt-panel-cuenta .card-title {
+    padding: 0 12px 4px;
+}
+
+#cnt-panel-cuenta .card-content {
+    padding: 14px 14px 14px;
+}
+
+#cnt-panel-transaccion .row, #cnt-panel-cuenta .row, .table-footer-static.row {
+    margin: 0
+}

@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <div class="card">
+        <div class="card-title row">
+            <div class="input-field search-imput col s12 m10">
+                <i class="material-icons prefix">search</i>
+                <h:inputText p:placeholder="Busar por numero de cuenta" styleClass="num" value="#{transRetiroBean.numeroCuenta}"
+                             onkeypress="if (event.keyCode == 13) {change(); return false; }" >
+                    <f:ajax event="change" listener="#{transRetiroBean.buscarCuenta}"
+                            render="cnt-panel-mensajes cnt-panel-opciones"
+                            onevent="capturarErrorCuenta"/>
+                </h:inputText>
+            </div>
+            <div class="input-field col s12 m2">
+                <a class="waves-effect btn cm-btn" style="padding: 0 6px;">
+                    <i class="material-icons orange-text">filter_list</i>
+                </a>
+            </div>
+        </div>
+        <div class="progress">
+            <div id="progress-cuenta"></div>
+        </div>
+        <div class="card-content row">
+            <div class="input-field col s12 m7">
+                <h:inputText id="nombres" type="text" class="valid" disabled="true" value="#{transRetiroBean.infoCuenta.numeroCuenta}"/>
+                <h:outputLabel for="nombres">Num. Cuenta </h:outputLabel>
+            </div>
+            <div class="input-field col s12 m5">
+                <h:inputText id="identifiacion" type="text" class="valid" disabled="true" value="#{transRetiroBean.infoCuenta.identifificaioPropietario}"/>
+                <h:outputLabel for="identifiacion">Identificacion </h:outputLabel>
+            </div>
+            <div class="input-field col s12">
+                <h:inputText id="direccion" type="text" class="valid" disabled="true" value="#{transRetiroBean.infoCuenta.nombrePropietrio}"/>
+                <h:outputLabel for="direccion">Propietario </h:outputLabel>
+            </div>
+            <div class="input-field col s12 m7">
+                <h:inputText id="email" type="text" class="valid" disabled="true" value="#{transRetiroBean.infoCuenta.correoPropietario}"/>
+                <h:outputLabel for="email">E-mail </h:outputLabel>
+            </div>
+            <div class="input-field col s12 m5">
+                <h:inputText id="telefono" type="text" class="valid" disabled="true" value="#{transRetiroBean.infoCuenta.ultimaTransaccion}">
+                    <f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+                </h:inputText>
+              <h:outputLabel for="telefono">Ultima Trans.</h:outputLabel>
+            </div>
+        </div>
+    </div>
+</ui:composition>
