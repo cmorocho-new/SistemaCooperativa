@@ -1,0 +1,102 @@
+<ui:composition template="base-virtual.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:f="http://xmlns.jcp.org/jsf/core"
+				xmlns:h="http://xmlns.jcp.org/jsf/html"
+				xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:define name="titulo">SC | Estado de Cuenta</ui:define>
+
+	<ui:define name="contenido">
+		<h4 align="center">Estado de Cuenta</h4>
+		<h:form id="cnt-estado-cuenta">
+			<div class="row" style="margin: 0;">
+				<div class="input-field col s3" style="margin: 0">
+					<h:inputText id="fechaInicio"
+								 value="#{estadoCuentaBean.fechaInicio}"
+								 class="validate fechaInput" required="true">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:inputText>
+					<h:outputLabel for="fechaInicio">Fecha Desde</h:outputLabel>
+				</div>
+				<div class="input-field col s3" style="margin: 0">
+					<h:inputText id="fechaFin"
+								 value="#{estadoCuentaBean.fechaFin}"
+								 class="validate fechaInput" required="true">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:inputText>
+					<h:outputLabel for="fechaFin">Fecha Hasta</h:outputLabel>
+				</div>
+				<div class="btn waves-effect cm-btn waves-light" style="padding: 0 8px; margin-top: 10px;">
+					<h:commandButton>
+						<f:ajax event="click" listener="#{estadoCuentaBean.cargarEstadoCuentaFecha()}"
+								render="lista-transaaciones" execute="cnt-estado-cuenta"/>
+						<i class="material-icons green-text">search</i>
+					</h:commandButton>
+				</div>
+			</div>
+			<div id="tbl-lista-transaaciones">
+				<div class="table-header">
+					<div class="table-header-dinamic">
+						<table>
+							<thead>
+							<tr>
+								<th class="colum-index center-align">INDEX</th>
+								<th width="150px" class="center-align">FECHA EMISION</th>
+								<th width="100px" class="center-align">TRANS.</th>
+								<th width="200px" class="center-align">DESCRIPCION</th>
+								<th width="100px" class="center-align">MONTO</th>
+								<th width="100px" class="center-align">SALDO</th>
+							</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+				<div class="table-body">
+					<h:dataTable id="lista-transaaciones" value="#{estadoCuentaBean.detallesTransaciones}" var="transacion"
+								 class="striped">
+						<h:column class="center-align">
+							<h:outputText value="#{rowCounter.row}" />
+						</h:column>
+						<h:column class="center-align">
+							<h:outputLabel value="#{transacion.fechaEminision}" style="color: black; font-size: 14px;">
+								<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+							</h:outputLabel>
+						</h:column>
+						<h:column>
+							<h:outputText value="#{transacion.transacion}"/>
+						</h:column>
+						<h:column class="center-align">
+							<h:outputText value="#{transacion.descripcion}"/>
+						</h:column>
+						<h:column class="center-align">
+							<h:outputLabel> #{transacion.haber > 0 ? "-": "+"}"</h:outputLabel>
+							<h:outputText value="#{transacion.haber > 0 ? transacion.haber: transacion.debe}">
+								<f:convertNumber type="currency" />
+							</h:outputText>
+						</h:column>
+						<h:column class="center-align">
+							<h:outputText value="#{transacion.saldo}">
+								<f:convertNumber type="currency" />
+							</h:outputText>
+						</h:column>
+					</h:dataTable>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="sub_js">
+		<script>
+			$( function() {
+				$( ".fechaInput" ).datepicker(
+					{   dateFormat: 'dd-mm-yy',
+						onClose: function () {
+							M.updateTextFields();
+						}
+					}
+				);
+			} );
+		</script>
+	</ui:define>
+
+</ui:composition>

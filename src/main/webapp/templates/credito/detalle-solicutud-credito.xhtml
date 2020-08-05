@@ -1,0 +1,210 @@
+<ui:composition template="/templates/base-site.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:define name="titulo"> SC | Detalle Solicitu </ui:define>
+    <ui:define name="titulo_contenido">	DETALLE DE SOLICITUD </ui:define>
+
+    <ui:define name="contenido">
+        <div class="container">
+            <h:form id="cnt-from-solicitud">
+                <div class="row" style="margin-bottom: 0">
+                    <ui:include src="/templates/mensajes.xhtml" />
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="progress">
+                        <div id="progress-cuenta"></div>
+                    </div>
+                    <h:panelGroup rendered="#{solicitudCreditoDetalle.infoSolisitudCredito.tipoCliente == null}">
+                        <h6 class="sub-titulo"> CLIENTE (?) </h6>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{solicitudCreditoDetalle.infoSolisitudCredito.tipoCliente != null}">
+                        <h6 class="sub-titulo">
+                            CLIENTE (#{solicitudCreditoDetalle.infoSolisitudCredito.tipoCliente.valor == '1' ?
+                                'BUENO' : 'MALO'})
+                        </h6>
+                    </h:panelGroup>
+                    <div class="input-field col s6">
+                        <h:inputText id="solicitante" type="text" disabled="true"
+                                     value="#{solicitudCreditoDetalle.infoSolisitudCredito.cliente}"/>
+                        <h:outputLabel for="solicitante">Solicitante </h:outputLabel>
+                    </div>
+                    <div class="input-field col s3">
+                        <h:inputText id="genero" type="text" disabled="true"
+                                     value="#{solicitudCreditoDetalle.infoSolisitudCredito.cliente.genero}"/>
+                        <h:outputLabel for="genero">Genero </h:outputLabel>
+                    </div>
+                    <div class="input-field col s3">
+                        <h:inputText id="estado_civil" type="text" disabled="true"
+                                     value="#{solicitudCreditoDetalle.infoSolisitudCredito.cliente.estadoCivil}"/>
+                        <h:outputLabel for="estado_civil">Estado Civil </h:outputLabel>
+                    </div>
+                    <div class="input-field col s1">
+                        <h:inputText id="edad" type="text" disabled="true"
+                                     value="#{solicitudCreditoDetalle.infoSolisitudCredito.edad}"/>
+                        <h:outputLabel for="edad">Edad </h:outputLabel>
+                    </div>
+                    <div class="input-field col s1">
+                        <h:inputText id="creditos" type="text" disabled="true"
+                                     value="#{solicitudCreditoDetalle.infoSolisitudCredito.cantidadCreditos}"/>
+                        <h:outputLabel for="creditos">Creditos </h:outputLabel>
+                    </div>
+                    <div class="input-field col s2">
+                        <h:inputText id="saldo" type="text" disabled="true"
+                                     value="#{solicitudCreditoDetalle.infoSolisitudCredito.saldoActual}">
+                            <f:convertNumber type="currency" />
+                        </h:inputText>
+                        <h:outputLabel for="saldo">Saldo Cuenta </h:outputLabel>
+                    </div>
+                    <div class="input-field col s2">
+                        <h:inputText id="ingresos" type="text" disabled="true"
+                                     value="#{solicitudCreditoDetalle.infoSolisitudCredito.totalIngresos}" >
+                                <f:convertNumber type="currency" />
+                        </h:inputText>
+                        <h:outputLabel for="ingresos">Ingresos </h:outputLabel>
+                    </div>
+                    <div class="input-field col s2">
+                        <h:inputText id="egresos" type="text" disabled="true"
+                                     value="#{solicitudCreditoDetalle.infoSolisitudCredito.totalEgresos}">
+                            <f:convertNumber type="currency" />
+                        </h:inputText>
+                        <h:outputLabel for="egresos">Egresos </h:outputLabel>
+                    </div>
+                    <div class="input-check col s3">
+                        <label class="right">
+                            <h:selectBooleanCheckbox
+                                id="trabajodor-ext" class="filled-in" checked="checked" disabled="true"
+                                value="#{solicitudCreditoDetalle.infoSolisitudCredito.trabajadorExtrangero}" />
+                            <span>Trabajador Extranjero</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 0">
+                    <div class="col s6 divider-vertical" style="margin: 0;">
+                        <div class="input-field col s8">
+                            <h:inputText id="tipo-vivienda" type="text" disabled="true"
+                                         value="#{solicitudCreditoDetalle.infoSolisitudCredito.tipoVienda}"/>
+                            <h:outputLabel for="tipo-vivienda">Tipo Vivienda </h:outputLabel>
+                        </div>
+                        <div class="input-field col s4">
+                            <h:inputText id="avaluo-vivienda" type="text" disabled="true"
+                                         value="#{solicitudCreditoDetalle.infoSolisitudCredito.avaluoVivienda}">
+                                <f:convertNumber type="currency" />
+                            </h:inputText>
+                            <h:outputLabel for="saldo">Avaluo Vivienda </h:outputLabel>
+                        </div>
+                        <div class="input-field col s8">
+                            <h:inputText id="tipo-empleo" type="text" disabled="true"
+                                         value="#{solicitudCreditoDetalle.infoSolisitudCredito.tipoEmpleo}"/>
+                            <h:outputLabel for="tipo-empleo">Tipo Empleo </h:outputLabel>
+                        </div>
+                        <div class="input-field col s4">
+                            <h:inputText id="tiempo-empleo" type="text" disabled="true"
+                                         value="#{solicitudCreditoDetalle.infoSolisitudCredito.tiempoEmpleo}"/>
+                            <h:outputLabel for="saldo">Tiempo Empleo </h:outputLabel>
+                        </div>
+                    </div>
+                    <div class="col s6" style="margin: 0;">
+                        <div class="input-field col s12">
+                            <h:inputText id="historial-credito" type="text" disabled="true"
+                                         value="#{solicitudCreditoDetalle.infoSolisitudCredito.historialCredito}"/>
+                            <h:outputLabel for="tipo-garante">Historial Credito </h:outputLabel>
+                        </div>
+                        <div class="input-field col s8">
+                            <h:inputText id="tipo-garante" type="text" disabled="true"
+                                         value="#{solicitudCreditoDetalle.infoSolisitudCredito.tipoGarante}"/>
+                            <h:outputLabel for="tipo-garante">Historial Garante </h:outputLabel>
+                        </div>
+                        <div class="input-field col s4">
+                            <h:inputText id="tasa-pago" type="text" disabled="true"
+                                         value="#{solicitudCreditoDetalle.infoSolisitudCredito.tasaPago}"/>
+                            <h:outputLabel for="tasa-pago">Tasa Pago</h:outputLabel>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider" style="margin-top: 10px;"></div>
+                <div class="row" style="margin-bottom: 0">
+                    <h6 class="sub-titulo">SLICITUD</h6>
+                    <div class="input-field col s6">
+                        <h:inputText id="proposito" type="text" disabled="true"
+                                     value="#{solicitudCreditoDetalle.infoSolisitudCredito.propositoCredito.nombre}"/>
+                        <h:outputLabel for="proposito">Proposito </h:outputLabel>
+                    </div>
+                    <div class="input-field col s2">
+                        <h:inputText id="monto-credito" type="text" disabled="true"
+                                     value="#{solicitudCreditoDetalle.infoSolisitudCredito.montoCredito}">
+                            <f:convertNumber type="currency" />
+                        </h:inputText>
+                        <h:outputLabel for="monto-credito">Monto</h:outputLabel>
+                    </div>
+                    <div class="input-field col s2">
+                        <h:inputText id="plazo-credito" type="text" disabled="true"
+                                     value="#{solicitudCreditoDetalle.infoSolisitudCredito.plazoMeses}" />
+                        <h:outputLabel for="plazo-credito">Plazo (meses)</h:outputLabel>
+                    </div>
+                    <div class="input-field col s2">
+                        <h:inputText id="interez-credito" type="text" disabled="true"
+                                     value="#{solicitudCreditoDetalle.infoSolisitudCredito.interez}" />
+                        <h:outputLabel for="interez-credito">Intrez (%)</h:outputLabel>
+                    </div>
+                    <div class="input-field col s6">
+                        <h:inputText id="garante-1" type="text" disabled="true"
+                                     value="#{solicitudCreditoDetalle.infoSolisitudCredito.garantePrincipal}"/>
+                        <h:outputLabel for="proposito">Garante Principal </h:outputLabel>
+                    </div>
+                    <div class="input-field col s6">
+                        <h:inputText id="garante-2" type="text" disabled="true"
+                                     value="#{solicitudCreditoDetalle.infoSolisitudCredito.garanteSecundario}"/>
+                        <h:outputLabel for="proposito">Garante Secundario </h:outputLabel>
+                    </div>
+                </div>
+                <div class="divider" style="margin-top: 10px;"></div>
+                <div class="row" style="margin-bottom: 0; margin-top: 18px;">
+                    <div class="col s6 divider-vertical" style="margin: 0;">
+                        <h:outputLink class="chip">
+                            <i class="close material-icons">attach_file</i>
+                            Cipia Cedula
+                        </h:outputLink>
+                        <h:outputLink class="chip">
+                            <i class="close material-icons">attach_file</i>
+                            Cipia Rol
+                        </h:outputLink>
+                        <h:outputLink class="chip">
+                            <span><i class="close material-icons">attach_file</i></span>
+                            Cipia planilla
+                        </h:outputLink>
+                    </div>
+                    <div class="col s6" style="margin: 0;">
+                        <div class="input-field col s12">
+                            <h:inputTextarea id="textarea1" class="materialize-textarea re" data-length="120"
+                                             value="#{solicitudCreditoDetalle.infoSolisitudCredito.observacion}"/>
+                            <h:outputLabel for="textarea1">Observacion: </h:outputLabel>
+                        </div>
+                    </div>
+                </div>
+                <div class="row center-align panel-butons">
+                    <h:panelGroup rendered="#{solicitudCreditoDetalle.mostrarBotonesPrincipales()}">
+                        <h:outputLink value ="/SistemaCooperativa/administrativo/creditos/"
+                                      styleClass="btn waves-effect waves-light red"
+                                      style="width: 200px; margin-right: 20px;"> CANCELAR
+                        </h:outputLink>
+                        <h:commandButton class="btn waves-effect waves-light" style="width: 200px; margin-right: 20px;"
+                                         action="#{solicitudCreditoDetalle.aprobarRechazarSolicitud(false)}" value="RECHAZAR">
+                        </h:commandButton>
+                        <h:commandButton class="btn waves-effect waves-light" style="width: 200px"
+                                         action="#{solicitudCreditoDetalle.aprobarRechazarSolicitud(true)}" value="APROBAR">
+                        </h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{!solicitudCreditoDetalle.mostrarBotonesPrincipales()}">
+                        <h:outputLink value ="/SistemaCooperativa/administrativo/creditos/"
+                                      styleClass="btn waves-effect waves-light"
+                                      style="width: 200px; margin-right: 20px;"> REGRESAR
+                        </h:outputLink>
+                    </h:panelGroup>
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,106 @@
+/* fallback */
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url("#{resource['css/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2']}") format('woff2');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+#cm-header .brand-logo {
+    font-size: 24px;
+}
+
+#cm-header .brand-logo {
+    color: black;
+    display: inline-block;
+    font-size: 2.1rem;
+    padding: 0;
+    font-weight: 501;
+}
+
+#cm-header .brand-logo i, #cm-header .brand-logo i.material-icons {
+    margin-left: 10px;
+    font-size: 26px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.dropdown-content li {
+    min-height: 24px;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+    padding: 2px 16px;
+    font-weight: 500;
+    font-size: 14px;
+    color: black;
+}
+
+.panel-mensaje {
+    padding: 8px 10px;
+    margin: 6px 0;
+}
+
+h6.sub-titulo {
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.panel-butons {
+    border-top: 1px solid #c6c3c3;
+    padding: 10px 0;
+    border-bottom: 1px solid #c6c3c3;
+}
+
+.toast {
+    padding: 0;
+    cursor: pointer;
+    font-size: 14px;
+    color: #424242;
+    font-weight: 520;
+}
+
+.toast .done-msg{
+    padding: 5px 20px;
+    background: #66bb6a;
+    width: 100%;
+}
+
+.toast .error-msg{
+    padding: 5px 20px;
+    background: #e57373;
+    width: 100%;
+}
+
+.toast .info-msg{
+    padding: 5px 20px;
+    background: #b3e5fc;
+    width: 100%;
+}
+
+.input-field {
+    margin-top: 6px;
+    margin-bottom: 4px;
+}
+
+.sub-nav {
+    height: 30px;
+    line-height: 30px;
+    margin-top: 10px;
+}

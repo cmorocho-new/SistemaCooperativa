@@ -1,0 +1,60 @@
+<ui:composition template="/templates/base.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="titulo">
+        SC | Inicio de Session
+    </ui:define>
+
+    <ui:define name="css">
+        <h:outputStylesheet type="text/css" name="/css/login.css"/>
+    </ui:define>
+
+    <ui:define id="login-page" name="contenedor">
+        <div class="container" style="width: 343px;">
+            <div class="z-depth-4 card-panel" style="margin-top: 30%">
+                <h:form id="login-form">
+                     <div class="row-icon">
+                        <a href="/SistemaCooperativa/" style="cursor: pointer;">
+                            <h:graphicImage value="#{resource['img/login/gap.jpg']}"/>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12" style="padding: 0">
+                            <i class="material-icons prefix">account_circle</i>
+                            <h:inputText id="id_correo" type="email" name="j_username" maxlength="254" required="true"
+                                         value="#{loginBean.correo}"/>
+                            <h:outputLabel for="id_correo">Correo</h:outputLabel>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="input-field col s12" style="padding: 0">
+                            <i class="material-icons prefix pt-5">lock</i>
+                            <h:inputSecret  id="id_password" name="j_password" maxlength="20" required="true"
+                                         value="#{loginBean.password}" />
+                            <h:outputLabel for="id_password">Password</h:outputLabel>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="center col s12 red-text text-darken-4">
+                            <h:messages />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12" style="padding: 0">
+                            <h:commandButton type="submit" value="INICIAR SESION" class="btn waves-effect waves-light col s12"
+                                             action="#{loginBean.loginVirtual}"/>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+        <!-- Pie del contendio -->
+        <footer id="cm-footer" class="page-footer">
+            <div class="center-align" style="height: 50px; padding: 8px">
+                <span class="white-text" style="font-size: 20px;">SC | BANCA VIRTUAL</span>
+            </div>
+        </footer>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,130 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <div class="table-header card grey lighten-4">
+        <div class="table-header-static">
+            <h:panelGroup id="cnt-formas-ingreso" class="input-field col s12 m4">
+                <h:selectOneMenu value="#{transDepositoBean.formaIngreso}"
+                                 converter="omnifaces.SelectItemsConverter">
+                    <f:selectItem itemLabel="Seleccione una forma" itemValue="#{null}" />
+                    <f:selectItems value="#{transDepositoBean.listaFormasIngreso}" var="forma"
+                                   itemLabel="#{forma}" itemValue="#{forma}" />
+                </h:selectOneMenu>
+            </h:panelGroup>
+            <div class="col s12 m2">
+                <div class="btn waves-effect cm-btn waves-light" style="padding: 0 6px;">
+                    <h:commandButton>
+                        <f:ajax event="click" listener="#{transDepositoBean.agregarDetalle()}"
+                                render="cnt-panel-mensajes tbl-lista-detalle"
+                                execute="tbl-lista-detalle" onevent="capturarErrorDetalle"/>
+                        <i class="material-icons green-text">add</i>
+                    </h:commandButton>
+                </div>
+            </div>
+            <div class="right col s12 m2">
+                <div class="btn waves-effect cm-btn right waves-light" style="padding: 0 6px;">
+                    <h:commandButton>
+                        <f:ajax event="click" listener="#{transDepositoBean.eliminarListaDetalles()}"
+                                render="cnt-panel-mensajes tbl-detalles-retiro"
+                                execute="tbl-lista-detalle" onevent="capturarErrorDetalle"/>
+                        <i class="material-icons black-text">delete</i>
+                    </h:commandButton>
+                </div>
+            </div>
+            <div class="progress">
+                <div id="progress-tabla"></div>
+            </div>
+        </div>
+        <div class="table-header-dinamic">
+            <table>
+                <thead>
+                <tr>
+                    <th class="colum-accion center-align">ACCION</th>
+                    <th class="colum-index center-align">INDEX</th>
+                    <th width="200px">FROMA DE INGRESO</th>
+                    <th width="150px" class="center-align">CANTIDAD</th>
+                    <th width="150px" class="center-align">MONTO</th>
+                    <th width="300px">OBSERVACION</th>
+                    <th width="150px" class="center-align">VALOR TOTAL</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="table-body">
+        <h:dataTable id="tbl-detalles-retiro" value="#{transDepositoBean.comprobante.detallesDeposito}" var="detalle" class="highlight">
+            <h:column class="colum-accion center-align">
+                <i class="material-icons" >delete</i>
+                <i class="material-icons" >edit</i>
+            </h:column>
+            <h:column class="colum-index center-align">
+                <h:outputText value="#{rowCounter.row}" />
+            </h:column>
+            <h:column>
+                <h:outputText value="#{detalle.tipoIngreso}" />
+                <f:passThroughAttribute name="width" value="200px"/>
+            </h:column>
+            <h:column class="right-align">
+                <h:inputText value="#{detalle.cantidad}" type="text" class="dec right-align" name="cantidad" maxlength="12"
+                             onkeypress="validacionInputs.validarNumero()" >
+                    <f:ajax event="blur" listener="#{transDepositoBean.blurCantidadDetalle(detalle)}"
+                            render="tbl-lista-detalle" execute="tbl-lista-detalle" onevent="capturarErrorDetalle"/>
+                </h:inputText>
+                <f:passThroughAttribute name="width" value="150px"/>
+            </h:column>
+            <h:column class="right-align">
+                <h:outputText value="#{detalle.monto}">
+                    <f:convertNumber type="currency" />
+                </h:outputText>
+                <f:passThroughAttribute name="width" value="150px"/>
+            </h:column>
+            <h:column>
+                <h:inputText value="#{detalle.observacion}" type="text" name="obeservacion" maxlength="200"/>
+                <f:passThroughAttribute name="width" value="300px"/>
+            </h:column>
+            <h:column class="right-align">
+                <h:outputText value="#{detalle.valor}">
+                    <f:convertNumber type="currency" />
+                </h:outputText>
+                <f:passThroughAttribute name="width" value="150px"/>
+            </h:column>
+        </h:dataTable>
+    </div>
+    <div class="table-footer grey lighten-4">
+        <div class="table-footer-static row">
+            <div class="input-field col s12 m2">
+                <div class="btn waves-effect cm-btn waves-light">
+                    <h:commandButton action="#{transDepositoBean.guardarTransaccion}">
+                        <f:ajax render="cnt-panel-mensajes cnt-panel-opciones cnt-formas-ingreso tbl-detalles-retiro cnt-resultado"
+                                execute="@all" onevent="capturarErrorTransaccion"/>
+                    </h:commandButton>
+                    <span class="green-text">GUARDAR</span>
+                </div>
+            </div>
+            <div class="col s12 m6"></div>
+            <h:panelGroup id="cnt-resultado" class="col s12 m4">
+                <ul class="collection">
+                    <li class="collection-item row">
+                        <div class="col s6 center-align item-label">DOLARES</div>
+                        <div class="col s6 right-align" ></div>
+                    </li>
+                    <li class="collection-item row">
+                        <div class="col s6 center-align item-label">MONEDAS</div>
+                        <div class="col s6 right-align" ></div>
+                    </li>
+                    <li class="collection-item row">
+                        <div class="col s6 center-align item-label item-total green-text text-darken-3">
+                            TOTAL
+                        </div>
+                        <div class="col s6 right-align item-label item-total green-text text-darken-3">
+                            <h:outputText value="#{transDepositoBean.total}">
+                                <f:convertNumber type="currency" />
+                            </h:outputText>
+                        </div>
+                    </li>
+                </ul>
+            </h:panelGroup>
+        </div>
+    </div>
+</ui:composition>

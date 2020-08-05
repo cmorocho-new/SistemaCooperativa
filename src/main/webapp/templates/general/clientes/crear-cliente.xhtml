@@ -1,0 +1,135 @@
+<ui:composition template="/templates/base-site.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:define name="titulo"> SC | Ingreso Clientes </ui:define>
+	<ui:define name="titulo_contenido">	INGRESO CLIENTES </ui:define>
+
+	<ui:define name="contenido">
+		<div class="container">
+			<h:form id="cnt-from-cliente" onsubmit="return validacionInputs.validarVacios('CLI')">
+				<div class="row" style="margin-bottom: 0">
+					<ui:include src="/templates/mensajes.xhtml" />
+				</div>
+				<div class="row">
+					<div class="divider" style="margin-top: 10px;"></div>
+					<h6 class="sub-titulo">DATOS PERSONALES</h6>
+				      <div class="row" style="margin: 0;">
+						<div class="input-field col s3">
+							<h:selectOneMenu id="tipo-identificacion" styleClass="requerido-CLI"
+								value="#{clienteBean.clienteDTO.tipoIdentificacion}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="---------" itemValue="#{null}" itemDisabled="true"
+											  noSelectionOption="true" />
+								<f:selectItems value="#{clienteBean.listaIdentificacion}" var="identificacion"
+											   itemLabel="#{identificacion.nombre}" itemValue="#{identificacion}" />
+							</h:selectOneMenu>
+							<h:outputLabel for="tipo-identificacion">Tipo Identificacion</h:outputLabel>
+						</div>
+
+						<div class="input-field col s3">
+							<h:inputText id="identificacion" type="text" class="num requerido-CLI" maxlength="13"
+								value="#{clienteBean.clienteDTO.identificacion}"/>
+							<h:outputLabel for="identificacion">Identificacion</h:outputLabel>
+						</div>
+					  </div>
+					<div class="input-field col s6">
+						<h:inputText id="nombres" type="text" class="requerido-CLI" maxlength="200"
+							value="#{clienteBean.clienteDTO.nombres}"/>
+						<h:outputLabel for="nombres">Nombres</h:outputLabel>
+					</div>
+
+					<div class="input-field col s6">
+						<h:inputText id="apellidos" type="text" class="requerido-CLI" maxlength="200"
+							value="#{clienteBean.clienteDTO.apellidos}"/>
+						<h:outputLabel for="apellidos">Apellidos</h:outputLabel>
+					</div>
+
+					<div class="input-field col s4">
+						<h:selectOneMenu id="genero" styleClass="requerido-CLI" value="#{clienteBean.clienteDTO.genero}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="---------" itemValue="#{null}" itemDisabled="true"
+										  noSelectionOption="true" />
+							<f:selectItems value="#{clienteBean.listaGenero}" var="genero" itemLabel="#{genero.nombre}"
+										   itemValue="#{genero}"/>
+						</h:selectOneMenu>
+						<h:outputLabel for="genero">Genero</h:outputLabel>
+					</div>
+
+					<div class="input-field col s4">
+						<h:inputText id="fechaNacimiento" type="text" class="requerido-CLI" maxlength="10"
+							value="#{clienteBean.clienteDTO.fechaNacimiento}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:inputText>
+						<h:outputLabel for="fechaNacimiento">Fecha Nacimiento</h:outputLabel>
+					</div>
+
+					<div class="input-field col s4">
+						<h:selectOneMenu id="estado-civil" styleClass="requerido-CLI" value="#{clienteBean.clienteDTO.estadoCivil}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="---------" itemValue="#{null}" itemDisabled="true"
+										  noSelectionOption="true" />
+							<f:selectItems value="#{clienteBean.listaEstadoCivil}"
+								var="estado" itemLabel="#{estado.nombre}" itemValue="#{estado}" />
+						</h:selectOneMenu>
+						<h:outputLabel for="estado-civil">Estado civil</h:outputLabel>
+					</div>
+				</div>
+				<div class="row">
+					<h6 class="sub-titulo">DATOS DE CONTACTO</h6>
+					<div class="input-field col s6">
+						<h:inputText id="correo" type="email" class="requerido-CLI" maxlength="200"
+							value="#{clienteBean.clienteDTO.correo}" />
+						<h:outputLabel for="correo">Correo</h:outputLabel>
+					</div>
+
+					<div class="input-field col s3">
+						<h:inputText id="celular" type="text" class="num requerido-CLI" maxlength="10"
+							value="#{clienteBean.clienteDTO.celular}" />
+						<h:outputLabel for="celular">Celular</h:outputLabel>
+					</div>
+
+					<div class="input-field col s3">
+						<h:inputText id="telefono" type="text" class="num requerido-CLI" maxlength="10"
+							value="#{clienteBean.clienteDTO.telefono}" />
+						<h:outputLabel for="telefono">Telefono</h:outputLabel>
+					</div>
+
+					<div class="input-field col s6">
+						<h:inputText id="callePrincipal" type="text" class="requerido-CLI" maxlength="300"
+							value="#{clienteBean.clienteDTO.callePrincipal}"/>
+						<h:messages for="callePrincipal" style="color:red"
+							class="helper-text" />
+						<h:outputLabel for="callePrincipal">Calle Principal</h:outputLabel>
+					</div>
+
+					<div class="input-field col s6">
+						<h:inputText id="calleSecundaria" type="text" class="validate" maxlength="300"
+							value="#{clienteBean.clienteDTO.calleSecundaria}" />
+						<h:outputLabel for="calleSecundaria">Calle Secundaria</h:outputLabel>
+					</div>
+				</div>
+				<div class="row center-align panel-butons">
+					 <h:commandButton class="btn waves-effect waves-light"  style="width: 200px"
+									  action="#{clienteBean.guardarClientesDto()}" value="GUARDAR">
+					 </h:commandButton>
+				</div>
+			</h:form>
+		</div>
+	</ui:define>
+
+	<ui:define name="sub_js">
+		<script>
+			$( function() {
+				$( "#cnt-from-cliente\\:fechaNacimiento" ).datepicker(
+						{ dateFormat: 'dd-mm-yy',
+						onClose: function () {
+							M.updateTextFields();
+						}}
+				);
+			} );
+		</script>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html" xml:lang="en" lang="en">
+<h:head>
+    <title><ui:insert name="titulo"/></title>
+    <!-- Incorporar los styles de materialize -->
+    <h:outputStylesheet type="text/css" name="/lib/materialize/css/materialize.min.css"/>
+
+    <ui:insert name="css"/>
+</h:head>
+<h:body>
+    <!-- Contenido de la pagina -->
+    <main id="app-sistema-cooperativa">
+        <ui:insert name="contenedor" />
+    </main>
+
+</h:body>
+<h:outputScript type="text/javascript" name="/lib/jquery/jquery-3.2.1.min.js" />
+<h:outputScript type="text/javascript" name="/lib/materialize/js/materialize.min.js" />
+
+<ui:insert name="js"/>
+</html>

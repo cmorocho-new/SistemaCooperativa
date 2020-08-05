@@ -1,0 +1,37 @@
+
+.table-footer-static .collection {
+    margin-bottom: 8px;
+}
+
+.table-footer .collection .collection-item {
+    padding: 2px 4px;
+}
+
+.collection-item.row {
+    margin: 0;
+}
+
+.item-label {
+    border-right: 1px solid #e0e0e0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.item-total {
+    font-size: 24px;
+    padding: 5px !important;
+}
+
+.btn-code a {
+    width: 35px;
+    height: 35px;
+}
+
+.btn-code a i {
+    font-size: 20px;
+    line-height: 36px;
+}
+
+.modal_mensaje.modal.modal-fixed-footer {
+    top: 14% !important;
+}

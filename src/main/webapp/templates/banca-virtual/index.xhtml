@@ -1,0 +1,38 @@
+<ui:composition template="base-virtual.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:f="http://xmlns.jcp.org/jsf/core"
+				xmlns:h="http://xmlns.jcp.org/jsf/html"
+				xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:define name="titulo"> SC | Banca Virtual </ui:define>
+
+	<ui:define name="contenido">
+		<h4 align="center">Bienvenido a la Banca Virtual</h4>
+		<br/>
+		<table>
+			<thead>
+				<tr>
+					<th>N° CUENTA</th>
+					<th>PROPIETARIO</th>
+					<th>ULT. TRANSACCION</th>
+					<th>SALDO</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>#{inicioVirtualBean.infoCuenta.numeroCuenta}</td>
+					<td>#{inicioVirtualBean.infoCuenta.nombrePropietrio}</td>
+					<td><h:outputLabel value="#{inicioVirtualBean.infoCuenta.ultimaTransaccion}" style="color: black; font-size: 14px;">
+						<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+					</h:outputLabel></td>
+					<td>
+						<h:outputText value="#{inicioVirtualBean.infoCuenta.saldoActual}">
+							<f:convertNumber type="currency" />
+						</h:outputText>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</ui:define>
+
+</ui:composition>

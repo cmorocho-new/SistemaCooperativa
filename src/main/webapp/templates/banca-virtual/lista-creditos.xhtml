@@ -1,0 +1,87 @@
+<ui:composition template="base-virtual.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:define name="titulo">SC | Listado Creditos</ui:define>
+
+	<ui:define name="contenido">
+        <nav class="sub-nav grey darken-3">
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    <h:outputLink  value ="" class="breadcrumb">CREDITOS</h:outputLink>
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col s9">
+                <h4 align="center">Listado de Creditos</h4>
+            </div>
+            <div class="col s3" style="margin-top: 26px">
+                <h:outputLink value ="/SistemaCooperativa/virtual/creditos/solicitud/"
+                              styleClass="btn waves-effect waves-light green right"
+                              style="width: 200px"> NUEVA SOLICITUD
+                </h:outputLink>
+            </div>
+        </div>
+		<h:form id="cnt-estado-cuenta">
+			<div id="tbl-lista-transaaciones">
+				<div class="table-header">
+					<div class="table-header-dinamic">
+						<table>
+							<thead>
+								<tr>
+									<th class="colum-index center-align">N° CREDITOS</th>
+									<th width="250px" class="center-align">TIPO DE CONSUMO</th>
+									<th width="100px" class="center-align">VALOR DE CREDITO</th>
+									<th width="100px" class="center-align">SALDO</th>
+									<th width="150px" class="center-align">FECHA VENCIMIENTO</th>
+									<th width="100px" class="center-align">DETALLE</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+				<div class="table-body">
+					<h:dataTable id="lista-transaaciones" value="#{listaCreditos.listarCreditos}" var="credito"
+                                 class="striped" >
+						<h:column class="colum-index center-align">
+							<h:outputText value="#{credito.numeroCredito}"/>
+						</h:column>
+						<h:column class="center-align">
+							<h:outputText value="#{credito.proposito}"/>
+                            <f:passThroughAttribute name="width" value="250px"/>
+						</h:column>
+						<h:column class="center-align" >
+                            <h:outputText value="#{credito.valorCredito}">
+                                <f:convertNumber type="currency" />
+                            </h:outputText>
+                            <f:passThroughAttribute name="width" value="100px"/>
+						</h:column>
+						<h:column class="center-align">
+                            <h:outputText value="#{credito.saldoCredito}">
+                                <f:convertNumber type="currency" />
+                            </h:outputText>
+                            <f:passThroughAttribute name="width" value="100px"/>
+						</h:column>
+						<h:column class="center-align">
+                            <h:outputText value="#{credito.fechaVencimiento}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+                            </h:outputText>
+                            <f:passThroughAttribute name="width" value="150px"/>
+						</h:column>
+						<h:column class="center-align">
+                            <h:outputLink value ="/SistemaCooperativa/virtual/creditos/#{credito.idCredito}/detalle/"
+                                        styleClass="black-text">
+                                <i class="material-icons">visibility</i>
+                            </h:outputLink>
+                            <f:passThroughAttribute name="width" value="100px"/>
+                        </h:column>
+					</h:dataTable>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

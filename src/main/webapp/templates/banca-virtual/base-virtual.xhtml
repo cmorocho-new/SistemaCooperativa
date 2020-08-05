@@ -1,0 +1,70 @@
+<ui:composition template="/templates/base.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:define name="css">
+        <!-- Incorporar los styles del proyecto -->
+        <h:outputStylesheet type="text/css" name="/css/cm-style.css"/>
+        <h:outputStylesheet type="text/css" name="/css/cm-virtual.css"/>
+        <h:outputStylesheet type="text/css" name="/lib/jquery/css/query-ui.css"/>
+
+        <ui:insert name="sub_css" />
+
+    </ui:define>
+
+    <ui:define name="contenedor">
+        <!-- Cabecera del contenido -->
+        <header id="cm-header" class="card" style="margin: 0;">
+            <a href="" class="brand-logo">
+                <i class="material-icons">account_balance_wallet</i>
+                BANCA VIRTUAL
+            </a>
+            <div class="right">
+                <h:form styleClass="right">
+                    <div class="btn waves-effect cm-btn waves-light" style="padding: 0 6px; margin-top: 10px;">
+                        <h:commandButton  action="#{loginBean.logout}" >
+                            <i class="material-icons green-text" style="line-height: 30px;" >exit_to_app</i>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+                <h5 class="right" style="margin: 10px;">#{principalBean.usuarioLogeado.nombre}</h5>
+            </div>
+            <nav class="nav-wrapper grey darken-4">
+                <ul id="nav-mobile" class="container hide-on-med-and-down">
+                    <li><h:outputLink  value ="/SistemaCooperativa/virtual/">INICIO</h:outputLink></li>
+                    <li><h:outputLink  value ="/SistemaCooperativa/virtual/estado/">ESTADO DE CUENTA</h:outputLink></li>
+                    <li><h:outputLink  value ="/SistemaCooperativa/virtual/creditos/">CREDITOS</h:outputLink></li>
+                    <li><h:outputLink  value ="/SistemaCooperativa/virtual/accesos/">ACCESOS</h:outputLink></li>
+                </ul>
+            </nav>
+        </header>
+        <!-- Seccion 1 del contenido -->
+        <section id="cm-content" class="row">
+            <div class="container">
+                <!-- child template -->
+                <ui:insert name="contenido" />
+            </div>
+        </section>
+        <!-- Pie del contendio -->
+        <footer id="cm-footer" class="page-footer grey darken-4">
+            <div class="center-align" style="font-size: 12px; font-weight: bold;">
+                © CM Software
+            </div>
+        </footer>
+    </ui:define>
+
+
+    <ui:define name="js">
+        <h:outputScript type="text/javascript" name="/lib/jquery/jquery.scrollsync.js" />
+        <h:outputScript type="text/javascript" name="/lib/jquery/jquery-ui.js" />
+        <h:outputScript type="text/javascript" name="/js/main.js" />
+        <h:outputScript type="text/javascript" name="/js/scroll-table.js" />
+        <h:outputScript type="text/javascript" name="/js/show-toast.js" />
+        <h:outputScript type="text/javascript" name="/js/text-validtions.js" />
+
+        <ui:insert name="sub_js" />
+
+    </ui:define>
+
+</ui:composition>

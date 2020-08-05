@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!-- This file is not required if you don't need any extra configuration. -->
+<!--
+
+Note: upgrading to JSF 2.3 will cause currently deployment errors if the web project is empty 
+      (does not contain any injection annotations and no beans.xml).
+      Error message is: "java.lang.NullPointerException at com.sun.faces.facelets.impl.DefaultResourceResolver.resolveUrl..."
+      The error does not occur with JSF 2.2.
+-->
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="
+        http://xmlns.jcp.org/xml/ns/javaee
+        http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+   <!-- This descriptor activates the JSF Servlet -->
+   <managed-bean>
+      <managed-bean-name>rowCounter</managed-bean-name>
+      <managed-bean-class>ec.edu.ups.bean.RowCounter</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+   </managed-bean>
+   <!-- Write your navigation rules here. You are encouraged to use CDI for
+      creating @Named managed beans. -->
+   <managed-bean>
+      <managed-bean-name>usuarioBean</managed-bean-name>
+      <managed-bean-class>ec.edu.ups.bean.administracion.UsuarioBean</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
+   
+   <managed-bean>
+      <managed-bean-name>clienteBean</managed-bean-name>
+      <managed-bean-class>ec.edu.ups.bean.ClienteBean</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
+
+   <managed-bean>
+      <managed-bean-name>transRetiroBean</managed-bean-name>
+      <managed-bean-class>ec.edu.ups.bean.transaccion.TransaccionRetiroBean</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
+
+   <managed-bean>
+      <managed-bean-name>transDepositoBean</managed-bean-name>
+      <managed-bean-class>ec.edu.ups.bean.transaccion.TransaccionDepositoBean</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
+
+   <managed-bean>
+      <managed-bean-name>usuarioAccesoBean</managed-bean-name>
+      <managed-bean-class>ec.edu.ups.bean.virtual.UsuarioAccesoBean</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
+
+   <managed-bean>
+      <managed-bean-name>inicioVirtualBean</managed-bean-name>
+      <managed-bean-class>ec.edu.ups.bean.virtual.InicioVitualBean</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
+
+   <managed-bean>
+      <managed-bean-name>estadoCuentaBean</managed-bean-name>
+      <managed-bean-class>ec.edu.ups.bean.virtual.EstadoCuentaBean</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
+   
+    <managed-bean>
+      <managed-bean-name>solicitudCreditoBean</managed-bean-name>
+      <managed-bean-class>ec.edu.ups.bean.virtual.SolicitudCreditoBean</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
+
+   <managed-bean>
+      <managed-bean-name>solicitudCreditoDetalle</managed-bean-name>
+      <managed-bean-class>ec.edu.ups.bean.credito.SolicitudCreditoDetalleBean</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
+
+    <managed-bean>
+      <managed-bean-name>pagoCuota</managed-bean-name>
+      <managed-bean-class>ec.edu.ups.bean.virtual.PagoCuotaBean</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
+
+</faces-config>

@@ -1,0 +1,130 @@
+<ui:composition template="base-virtual.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:define name="titulo">SC | Pago de Cuota</ui:define>
+
+    <ui:define name="contenido">
+        <nav class="sub-nav grey darken-3">
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    <h:outputLink  value ="/SistemaCooperativa/virtual/creditos/" class="breadcrumb">CREDITOS</h:outputLink>
+                    <h:outputLink  value ="/SistemaCooperativa/virtual/creditos/#{pagoCuota.idCredito}/detalle/" class="breadcrumb">DETALLE</h:outputLink>
+                    <h:outputLink  value ="" class="breadcrumb">PAGO</h:outputLink>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <h:form enctype="multipart/form-data" id="cnt-from-pago"
+                    onsubmit="return validacionInputs.validarVacios('PAG')">
+                <div class="row" style="margin-bottom: 0">
+                    <ui:include src="/templates/mensajes.xhtml" />
+                </div>
+                <div class="row" style="margin: 0">
+                    <div class="progress">
+                        <div id="progress-cuenta"></div>
+                    </div>
+                </div>
+                <div id="tbl-lista-transaaciones" class="row">
+                    <div class="table-header">
+                        <div class="table-header-dinamic">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="colum-index center-align">INDEX</th>
+                                        <th width="250px" class="center-align">FECHA</th>
+                                        <th width="150px" class="center-align">N° PAGO</th>
+                                        <th width="100px" class="center-align">VALOR</th>
+                                        <th width="100px" class="center-align">SALDO</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="table-body">
+                        <h:dataTable id="lista-transaaciones" value="#{pagoCuota.listaPagos}" var="pago"
+                                     class="striped" >
+                            <h:column class="center-align">
+                                <h:outputText value="#{rowCounter.row}" />
+                            </h:column>
+                            <h:column class="center-align">
+                                <h:outputLabel value="#{pago.fechaPago}" style="color: black; font-size: 14px;">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+                                </h:outputLabel>
+                                <f:passThroughAttribute name="width" value="250px"/>
+                            </h:column>
+                            <h:column class="center-align" >
+                                <h:outputText value="#{pago.numeroPago}"/>
+                                <f:passThroughAttribute name="width" value="150px"/>
+                            </h:column>
+                            <h:column class="center-align" >
+                                <h:outputText value="#{pago.valorPago}">
+                                    <f:convertNumber type="currency" />
+                                </h:outputText>
+                                <f:passThroughAttribute name="width" value="100px"/>
+                            </h:column>
+                            <h:column class="center-align">
+                                <h:outputText value="#{pago.saldoCuota}">
+                                    <f:convertNumber type="currency" />
+                                </h:outputText>
+                                <f:passThroughAttribute name="width" value="100px"/>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </div>
+                <h:panelGroup rendered="#{pagoCuota.infoCuota.saldoCuota > 0 }">
+                    <div class="divider" style="margin-top: 10px;"></div>
+                    <h6 class="sub-titulo">PAGO</h6>
+                    <div class="row">
+                        <div class="input-field col s3">
+                            <h:inputText id="saldo-cuenta" type="text" disabled="true"
+                                         value="#{pagoCuota.infoCuota.saldoCuenta}">
+                                <f:convertNumber type="currency" />
+                            </h:inputText>
+                            <h:outputLabel for="saldo-cuenta">Saldo Cuenta</h:outputLabel>
+                        </div>
+                        <div class="input-field col s3">
+                            <h:inputText id="saldo-cuota" type="text" disabled="true"
+                                         value="#{pagoCuota.infoCuota.saldoCuota}">
+                                <f:convertNumber type="currency" />
+                            </h:inputText>
+                            <h:outputLabel for="saldo-cuota">Saldo Cuota</h:outputLabel>
+                        </div>
+                        <div class="input-field col s3">
+                            <h:inputText id="estado-cuota" type="text" disabled="true"
+                                         value="#{pagoCuota.infoCuota.estadoCuota}" />
+                            <h:outputLabel for="estado-cuota">Estado Cuota</h:outputLabel>
+                        </div>
+                        <div class="input-field col s3">
+                            <h:inputText id="plazo-credito" type="text" class="dec requerido-PAG" maxlength="10"
+                                         value="#{pagoCuota.infoCuota.valorPago}" />
+                            <h:outputLabel for="plazo-credito">Valor Pago</h:outputLabel>
+                        </div>
+                    </div>
+                </h:panelGroup>
+                <div class="row center-align panel-butons">
+                    <h:panelGroup rendered="#{pagoCuota.infoCuota.saldoCuota > 0 }">
+                        <h:outputLink value="/SistemaCooperativa/virtual/creditos/#{pagoCuota.idCredito}/detalle/"
+                                      styleClass="btn waves-effect waves-light red"
+                                      style="width: 200px; margin-right: 20px;"> CANCELAR
+                        </h:outputLink>
+                        <h:commandButton class="btn waves-effect waves-light"
+                                         style="width: 200px" process="@this"
+                                         action="#{pagoCuota.guardarPagoCuota()}"
+                                         value="GUARDAR">
+                        </h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{pagoCuota.infoCuota.saldoCuota == 0 }">
+                        <h:outputLink value="/SistemaCooperativa/virtual/creditos/#{pagoCuota.idCredito}/detalle/"
+                                      styleClass="btn waves-effect waves-light"
+                                      style="width: 200px; margin-right: 20px;"> REGRESAR
+                        </h:outputLink>
+                    </h:panelGroup>
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>
